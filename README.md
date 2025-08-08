@@ -16,8 +16,8 @@ Linear package structures offer dramatically better build times with minimal imp
 
 ## Installation
 ```
-git clone https://github.com/enheit/golang-packages-performance.git
-cd golang-packages-performance
+git clone https://github.com/enheit/golang-package-structure-performance.git
+cd golang-package-structure-performance
 ```
 
 ## Linear package structure test
