@@ -1,15 +1,47 @@
-# LINUX
+# Golang package structure performance test
 
 This benchmark compares linear vs nested Go package structures to measure their impact on build performance. Tests run on AMD Ryzen 7 9800X3D with 60GB RAM.
 
+### Structure Example
+
+```
+liniear/
+  files/
+    file_1/
+      file_1.go
+    file_2/
+      file_2.go
+    file_3/
+      file_3.go
+    ...
+    file_1000/
+      file_1000.go
+  go.mod
+  main.go
+```
+vs
+```
+nested/
+  n/
+    f1.go
+    f2/
+      f2.go
+      f3/
+        f3.go
+        ...
+        f800/
+        f800.go
+  go.mod
+  main.go
+```
+
 ### Key Results: 
 
-+-------------------+------------------------+-----------------------+------------+
-| Package Structure | Build Time (no cache)  | Build Time (cached)   | Runtime    |
-+-------------------+------------------------+-----------------------+------------+
-| Linear            | \~1.09s                | \~0.07s               | \~0.001s   |
-| Nested            | \~9.5s                 | \~2.6s                | \~0.001s   |
-+-------------------+------------------------+-----------------------+------------+
+| Package Structure | Build Time (no cache) | Build Time (cached) | Runtime  |
+|-------------------|------------------------|---------------------|----------|
+| Linear            | ~1.09s                 | ~0.07s              | ~0.001s  |
+| Nested            | ~9.5s                  | ~2.6s               | ~0.001s  |
+
 
 ### Performance Impact:
 
@@ -44,7 +76,7 @@ go clean -cache
 time ./main.go
 ```
 
-# Linear results
+### Linear results
 
 ```
 ➜  linear git:(main) ✗ go clean -cache
@@ -97,7 +129,7 @@ go clean -cache
 time ./main.go
 ```
 
-# Nested results
+### Nested results
 ```
 ➜  nested git:(main) ✗ go clean -cache
 ➜  nested git:(main) ✗ time go build main.go
@@ -133,7 +165,9 @@ go run main.go  1.73s user 1.46s system 124% cpu 2.568 total
 ./main  0.00s user 0.00s system 95% cpu 0.001 total
 ```
 
-## Test environment (Hardware specification)
+## Hardware specification
+
+### CPU
 
 ```
 ➜  ~ lscpu
@@ -206,12 +240,13 @@ Vulnerabilities:
   Tsa:                       Not affected
   Tsx async abort:           Not affected
 ```
-
+### RAM
 ```
 ➜  ~ free -h
                total        used        free      shared  buff/cache   available
 Mem:            60Gi        10Gi        41Gi       174Mi       9.5Gi        50Gi
 Swap:          4.0Gi          0B       4.0Gi
+```
 
 ```
 ➜  ~ cat /proc/meminfo
