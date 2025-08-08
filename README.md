@@ -46,7 +46,7 @@ nested/
 ### Performance Impact:
 
 - Nested packages are \~8.7x slower to build from scratch
-- Nested packages are \~37x slower with cache
+- Nested packages are \~3.7x slower with cache
 - Runtime performance is identical (~1ms for both)
 - Caching provides significant benefits for both structures, but linear packages benefit more
 
