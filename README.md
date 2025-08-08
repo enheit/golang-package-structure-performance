@@ -2,11 +2,13 @@
 
 This benchmark compares linear vs nested Go package structures to measure their impact on build performance. Tests run on AMD Ryzen 7 9800X3D with 60GB RAM.
 Key Results:
-Package StructureBuild Time (no cache)Build Time (cached)RuntimeLinear~1.09s~0.07s~0.001sNested~9.5s~2.6s~0.001s
+Package Structure       Build Time (no cache)       Build Time (cached)     Runtime
+Linear                  \~1.09s                      \~0.07s                  \~0.001s
+Nested                  \~9.5s                       \~2.6s                   \~0.001s
 Performance Impact:
 
-Nested packages are ~8.7x slower to build from scratch
-Nested packages are ~37x slower with cache
+Nested packages are \~8.7x slower to build from scratch
+Nested packages are \~37x slower with cache
 Runtime performance is identical (~1ms for both)
 Caching provides significant benefits for both structures, but linear packages benefit more
 
